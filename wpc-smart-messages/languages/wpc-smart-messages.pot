@@ -1,0 +1,505 @@
+# Copyright (C) 2024 WPClever
+# This file is distributed under the same license as the WPC Smart Messages for WooCommerce plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: WPC Smart Messages for WooCommerce 4.2.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpc-smart-messages\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-07-29T19:00:39+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: wpc-smart-messages\n"
+
+#. Plugin Name of the plugin
+msgid "WPC Smart Messages for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://wpclever.net/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Display messages throughout your store through smart conditional logic settings."
+msgstr ""
+
+#. Author of the plugin
+msgid "WPClever"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://wpclever.net"
+msgstr ""
+
+#: includes/class-backend.php:45
+#: includes/class-backend.php:815
+msgid "Location"
+msgstr ""
+
+#: includes/class-backend.php:50
+msgid "Conditions"
+msgstr ""
+
+#: includes/class-backend.php:55
+#: includes/class-backend.php:202
+msgid "Design"
+msgstr ""
+
+#: includes/class-backend.php:60
+#: includes/class-backend.php:816
+msgid "Message"
+msgstr ""
+
+#: includes/class-backend.php:90
+msgid "Undefined"
+msgstr ""
+
+#: includes/class-backend.php:101
+msgid "You also can place below shortcode where you want to show this message. It still needs to meet the conditions to be displayed."
+msgstr ""
+
+#: includes/class-backend.php:110
+msgid "Current time"
+msgstr ""
+
+#: includes/class-backend.php:114
+msgid "Week No."
+msgstr ""
+
+#: includes/class-backend.php:115
+msgid "Date/time settings"
+msgstr ""
+
+#: includes/class-backend.php:118
+msgid "The logic when configuring conditions should be precise, meaningful & relevant for the message to be displayed on the chosen locations. Some conditions are satisfied in certain locations only. Irrelevant conditions will be skipped. For example, if you choose the condition “Product categories” & “Single product page” for the location, the message will be visible for all products under the chosen categories."
+msgstr ""
+
+#: includes/class-backend.php:132
+#: includes/class-backend.php:145
+#: includes/class-backend.php:345
+msgid "Remove"
+msgstr ""
+
+#: includes/class-backend.php:150
+msgid "+ Add Condition"
+msgstr ""
+
+#: includes/class-backend.php:158
+msgid "You can use the shortcode within the HTML text. Build-in shortcodes:"
+msgstr ""
+
+#: includes/class-backend.php:185
+msgid "Container"
+msgstr ""
+
+#: includes/class-backend.php:191
+msgid "Wrap the message by a div or span tag."
+msgstr ""
+
+#: includes/class-backend.php:195
+msgid "Extra CSS classes"
+msgstr ""
+
+#: includes/class-backend.php:198
+msgid "Add extra CSS classes for the message container, split by one space."
+msgstr ""
+
+#: includes/class-backend.php:205
+msgid "No"
+msgstr ""
+
+#: includes/class-backend.php:206
+msgid "Visual"
+msgstr ""
+
+#: includes/class-backend.php:207
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/class-backend.php:209
+msgid "Configure the appearance of the container for this message."
+msgstr ""
+
+#: includes/class-backend.php:216
+msgid "Just fill CSS code without brackets, it will be used in %s"
+msgstr ""
+
+#: includes/class-backend.php:224
+msgid "Background"
+msgstr ""
+
+#: includes/class-backend.php:227
+#: includes/class-backend.php:256
+msgid "Color"
+msgstr ""
+
+#: includes/class-backend.php:235
+msgid "Border"
+msgstr ""
+
+#: includes/class-backend.php:238
+msgid "Style"
+msgstr ""
+
+#: includes/class-backend.php:241
+msgid "None"
+msgstr ""
+
+#: includes/class-backend.php:242
+msgid "Solid"
+msgstr ""
+
+#: includes/class-backend.php:243
+msgid "Dotted"
+msgstr ""
+
+#: includes/class-backend.php:244
+msgid "Dashed"
+msgstr ""
+
+#: includes/class-backend.php:245
+msgid "Double"
+msgstr ""
+
+#: includes/class-backend.php:250
+msgid "With (px)"
+msgstr ""
+
+#: includes/class-backend.php:262
+msgid "Radius (px)"
+msgstr ""
+
+#: includes/class-backend.php:270
+msgid "Padding"
+msgstr ""
+
+#: includes/class-backend.php:274
+#: includes/class-backend.php:305
+msgid "Top (px)"
+msgstr ""
+
+#: includes/class-backend.php:280
+#: includes/class-backend.php:311
+msgid "Right (px)"
+msgstr ""
+
+#: includes/class-backend.php:286
+#: includes/class-backend.php:317
+msgid "Bottom (px)"
+msgstr ""
+
+#: includes/class-backend.php:292
+#: includes/class-backend.php:323
+msgid "Left (px)"
+msgstr ""
+
+#: includes/class-backend.php:301
+msgid "Margin"
+msgstr ""
+
+#: includes/class-backend.php:363
+msgid "Date & Time"
+msgstr ""
+
+#: includes/class-backend.php:364
+msgid "Everyday"
+msgstr ""
+
+#: includes/class-backend.php:365
+msgid "On the date"
+msgstr ""
+
+#: includes/class-backend.php:366
+msgid "Before date & time"
+msgstr ""
+
+#: includes/class-backend.php:367
+msgid "After date & time"
+msgstr ""
+
+#: includes/class-backend.php:368
+msgid "Before date"
+msgstr ""
+
+#: includes/class-backend.php:369
+msgid "After date"
+msgstr ""
+
+#: includes/class-backend.php:370
+msgid "Multiple dates"
+msgstr ""
+
+#: includes/class-backend.php:371
+msgid "Date range"
+msgstr ""
+
+#: includes/class-backend.php:372
+msgid "All even dates"
+msgstr ""
+
+#: includes/class-backend.php:373
+msgid "All odd dates"
+msgstr ""
+
+#: includes/class-backend.php:374
+msgid "Daily time range"
+msgstr ""
+
+#: includes/class-backend.php:375
+msgid "Daily before time"
+msgstr ""
+
+#: includes/class-backend.php:376
+msgid "Daily after time"
+msgstr ""
+
+#: includes/class-backend.php:377
+msgid "Weekly on every"
+msgstr ""
+
+#: includes/class-backend.php:378
+msgid "All even weeks"
+msgstr ""
+
+#: includes/class-backend.php:379
+msgid "All odd weeks"
+msgstr ""
+
+#: includes/class-backend.php:380
+msgid "On week No."
+msgstr ""
+
+#: includes/class-backend.php:381
+msgid "Monthly on the"
+msgstr ""
+
+#: includes/class-backend.php:382
+msgid "On month No."
+msgstr ""
+
+#: includes/class-backend.php:384
+msgid "User"
+msgstr ""
+
+#: includes/class-backend.php:385
+msgid "User role"
+msgstr ""
+
+#: includes/class-backend.php:387
+msgid "Cart"
+msgstr ""
+
+#: includes/class-backend.php:388
+msgid "Cart total"
+msgstr ""
+
+#: includes/class-backend.php:389
+msgid "Cart count"
+msgstr ""
+
+#: includes/class-backend.php:391
+msgid "Product"
+msgstr ""
+
+#: includes/class-backend.php:392
+msgid "Product status"
+msgstr ""
+
+#: includes/class-backend.php:393
+msgid "Product stock"
+msgstr ""
+
+#: includes/class-backend.php:394
+msgid "Product weight"
+msgstr ""
+
+#: includes/class-backend.php:395
+msgid "Product width"
+msgstr ""
+
+#: includes/class-backend.php:396
+msgid "Product height"
+msgstr ""
+
+#: includes/class-backend.php:722
+msgctxt "Post Type General Name"
+msgid "Smart Messages"
+msgstr ""
+
+#: includes/class-backend.php:723
+msgctxt "Post Type Singular Name"
+msgid "Smart Message"
+msgstr ""
+
+#: includes/class-backend.php:724
+msgid "Add New Smart Message"
+msgstr ""
+
+#: includes/class-backend.php:725
+msgid "Add New"
+msgstr ""
+
+#: includes/class-backend.php:726
+msgid "Edit Smart Message"
+msgstr ""
+
+#: includes/class-backend.php:727
+msgid "Update Smart Message"
+msgstr ""
+
+#: includes/class-backend.php:728
+msgid "Search Smart Message"
+msgstr ""
+
+#: includes/class-backend.php:732
+msgid "Smart Messages"
+msgstr ""
+
+#: includes/class-backend.php:813
+msgid "Activate"
+msgstr ""
+
+#: includes/class-backend.php:814
+msgid "Title"
+msgstr ""
+
+#: includes/class-backend.php:817
+msgid "Date"
+msgstr ""
+
+#: includes/class-shortcode.php:202
+msgid "#%s in %s"
+msgstr ""
+
+#: includes/class-shortcode.php:279
+msgid "{name} from {from} bought this item!"
+msgstr ""
+
+#: includes/class-shortcode.php:529
+msgid "%s year"
+msgid_plural "%s years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-shortcode.php:533
+msgid "%s month"
+msgid_plural "%s months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-shortcode.php:537
+msgid "%s day"
+msgid_plural "%s days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-shortcode.php:541
+msgid "%s hour"
+msgid_plural "%s hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-shortcode.php:545
+msgid "%s min"
+msgid_plural "%s mins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/templates/conditions/compare_number.php:18
+msgid "Equal to"
+msgstr ""
+
+#: includes/templates/conditions/compare_number.php:19
+msgid "Not equal to"
+msgstr ""
+
+#: includes/templates/conditions/compare_number.php:20
+msgid "Greater than"
+msgstr ""
+
+#: includes/templates/conditions/compare_number.php:21
+msgid "Greater or equal to"
+msgstr ""
+
+#: includes/templates/conditions/compare_number.php:22
+msgid "Less than"
+msgstr ""
+
+#: includes/templates/conditions/compare_number.php:23
+msgid "Less or equal to"
+msgstr ""
+
+#: includes/templates/conditions/product_status.php:12
+msgid "On sale"
+msgstr ""
+
+#: includes/templates/conditions/product_status.php:13
+msgid "Featured"
+msgstr ""
+
+#: includes/templates/conditions/product_status.php:14
+msgid "In stock"
+msgstr ""
+
+#: includes/templates/conditions/product_status.php:15
+msgid "Out of stock"
+msgstr ""
+
+#: includes/templates/conditions/product_status.php:16
+msgid "On backorder"
+msgstr ""
+
+#: includes/templates/conditions/product_status.php:17
+msgid "Managing stock"
+msgstr ""
+
+#: includes/templates/conditions/product_status.php:18
+msgid "Sold individually"
+msgstr ""
+
+#: includes/templates/conditions/term.php:12
+msgid "including"
+msgstr ""
+
+#: includes/templates/conditions/term.php:13
+msgid "excluding"
+msgstr ""
+
+#: includes/templates/conditions/user_role.php:17
+msgid "User (logged in)"
+msgstr ""
+
+#: includes/templates/conditions/user_role.php:18
+msgid "Guest (not logged in)"
+msgstr ""
+
+#: includes/templates/conditions/weekday.php:16
+msgid "Monday"
+msgstr ""
+
+#: includes/templates/conditions/weekday.php:17
+msgid "Tuesday"
+msgstr ""
+
+#: includes/templates/conditions/weekday.php:18
+msgid "Wednesday"
+msgstr ""
+
+#: includes/templates/conditions/weekday.php:19
+msgid "Thursday"
+msgstr ""
+
+#: includes/templates/conditions/weekday.php:20
+msgid "Friday"
+msgstr ""
+
+#: includes/templates/conditions/weekday.php:21
+msgid "Saturday"
+msgstr ""
+
+#: includes/templates/conditions/weekday.php:22
+msgid "Sunday"
+msgstr ""
