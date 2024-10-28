@@ -199,7 +199,7 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'id'   => null,
 				'top'  => 10,
 				'in'   => 'product_cat',
-				'text' => esc_html__( '#%s in %s', 'wpc-smart-messages' )
+				'text' => /* translators: top of category */ esc_html__( '#%1$d in %2$s', 'wpc-smart-messages' )
 			], $attrs );
 
 			if ( ! $attrs['id'] ) {
@@ -526,23 +526,23 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 
 			// year
 			$years_value = floor( $diff / YEAR_IN_SECONDS );
-			$years       = sprintf( _n( '%s year', '%s years', $years_value, 'wpc-smart-messages' ), $years_value );
+			$years       = sprintf( /* translators: year */ _n( '%s year', '%s years', $years_value, 'wpc-smart-messages' ), $years_value );
 
 			// month
 			$months_value = floor( $diff / ( YEAR_IN_SECONDS / 12 ) ) % 12;
-			$months       = sprintf( _n( '%s month', '%s months', $months_value, 'wpc-smart-messages' ), $months_value );
+			$months       = sprintf( /* translators: month */ _n( '%s month', '%s months', $months_value, 'wpc-smart-messages' ), $months_value );
 
 			// days
 			$days_value = floor( $diff / DAY_IN_SECONDS ) % 365 % 30;
-			$days       = sprintf( _n( '%s day', '%s days', $days_value, 'wpc-smart-messages' ), $days_value );
+			$days       = sprintf( /* translators: day */ _n( '%s day', '%s days', $days_value, 'wpc-smart-messages' ), $days_value );
 
 			// hours
 			$hours_value = floor( $diff / HOUR_IN_SECONDS ) % 24;
-			$hours       = sprintf( _n( '%s hour', '%s hours', $hours_value, 'wpc-smart-messages' ), $hours_value );
+			$hours       = sprintf( /* translators: hour */ _n( '%s hour', '%s hours', $hours_value, 'wpc-smart-messages' ), $hours_value );
 
 			// minutes
 			$mins_value = round( $diff / MINUTE_IN_SECONDS ) % 60;
-			$mins       = sprintf( _n( '%s min', '%s mins', $mins_value, 'wpc-smart-messages' ), $mins_value );
+			$mins       = sprintf( /* translators: min */ _n( '%s min', '%s mins', $mins_value, 'wpc-smart-messages' ), $mins_value );
 
 			$years  = ( 0 == $years_value ) ? null : $years;
 			$months = ( 0 == $months_value ) ? null : $months;

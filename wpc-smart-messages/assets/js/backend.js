@@ -54,6 +54,7 @@
         group: group,
         type: type,
         index: key,
+        nonce: wpcsm_vars.nonce,
       }, dataType: 'html', beforeSend: function() {
         $value.html('<div class="spinner is-active"></div>');
       }, complete: function() {
@@ -72,15 +73,16 @@
   });
 
   $(document).on('click touch', '.wpcsm-add-condition', function(e) {
-    let $this = $(this),
-        index = $this.prev('.wpcsm-conditions').
-            find('.input-panel').
-            last().
-            data('key') || 0;
+    let $this = $(this), index = $this.prev('.wpcsm-conditions').
+        find('.input-panel').
+        last().
+        data('key') || 0;
 
     $.ajax({
       url: ajaxurl, method: 'POST', data: {
-        action: 'wpcsm_add_condition', index: index + 1,
+        action: 'wpcsm_add_condition',
+        index: index + 1,
+        nonce: wpcsm_vars.nonce,
       }, dataType: 'html', beforeSend: function() {
         $this.prop('disabled', true);
       }, complete: function() {
@@ -94,13 +96,12 @@
   $(document).on('click touch', '.wpcsm-activate-btn', function(e) {
     e.preventDefault();
 
-    let $this = $(this),
-        id = $this.data('id'),
+    let $this = $(this), id = $this.data('id'),
         act = $this.hasClass('deactivate') ? 'deactivate' : 'activate';
 
     $.ajax({
       url: ajaxurl, method: 'POST', data: {
-        action: 'wpcsm_activate', id: id, act: act,
+        action: 'wpcsm_activate', id: id, act: act, nonce: wpcsm_vars.nonce,
       }, dataType: 'html', beforeSend: function() {
         $this.addClass('updating');
       }, complete: function() {
@@ -134,7 +135,10 @@
         ajax: {
           url: ajaxurl, dataType: 'json', delay: 250, data: function(params) {
             return {
-              q: params.term, action: 'wpcsm_search_term', taxonomy: taxonomy,
+              q: params.term,
+              action: 'wpcsm_search_term',
+              taxonomy: taxonomy,
+              nonce: wpcsm_vars.nonce,
             };
           }, processResults: function(data) {
             var options = [];
@@ -147,7 +151,8 @@
               results: options,
             };
           }, cache: true,
-        }, minimumInputLength: 1,
+        },
+        minimumInputLength: 1,
       });
     });
   }

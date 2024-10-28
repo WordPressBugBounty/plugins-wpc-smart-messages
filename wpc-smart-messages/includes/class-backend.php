@@ -32,13 +32,6 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
 			// columns
 			add_filter( 'manage_edit-wpc_smart_message_columns', [ $this, 'message_columns' ] );
 			add_action( 'manage_wpc_smart_message_posts_custom_column', [ $this, 'message_columns_content' ], 10, 2 );
-
-			// HPOS compatibility
-			add_action( 'before_woocommerce_init', function () {
-				if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
-					FeaturesUtil::declare_compatibility( 'custom_order_tables', WPCSM_FILE );
-				}
-			} );
 		}
 
 		function add_meta_box() {
@@ -213,7 +206,7 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
                     <div class="wpcsm-design-box-label">CSS</div>
                     <div class="wpcsm-design-box-value">
                         <div>
-                            <div style="margin-bottom: 5px"><?php printf( esc_html__( 'Just fill CSS code without brackets, it will be used in %s', 'wpc-smart-messages' ), '<code>.wpcsm-message-' . $post->ID . ' { ... }</code>' ); ?></div>
+                            <div style="margin-bottom: 5px"><?php printf( /* translators: CSS */ esc_html__( 'Just fill CSS code without brackets, it will be used in %s', 'wpc-smart-messages' ), '<code>.wpcsm-message-' . $post->ID . ' { ... }</code>' ); ?></div>
                             <div>
                                 <textarea rows="10" cols="50" class="large-text" name="wpcsm_custom_css" style="width: 100%"><?php echo $custom_css; ?></textarea>
                             </div>
@@ -333,6 +326,10 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
 		}
 
 		function ajax_add_condition() {
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
+				die( 'Permissions check failed!' );
+			}
+
 			$index = sanitize_text_field( $_POST['index'] );
 			?>
             <div class="input-panel" data-key="<?php echo esc_attr( $index ) ?>">
@@ -349,6 +346,10 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
 		}
 
 		function ajax_get_condition_value() {
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
+				die( 'Permissions check failed!' );
+			}
+
 			$group = sanitize_text_field( $_POST['group'] );
 			$type  = sanitize_text_field( $_POST['type'] );
 			$index = sanitize_text_field( $_POST['index'] );
@@ -415,7 +416,7 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
 			], $condition );
 
 			if ( ! empty( $condition['group'] ) ) {
-				include 'templates/conditions/' . $condition['group'] . '.php';
+				include 'templates/conditions/' . sanitize_file_name( $condition['group'] ) . '.php';
 			}
 		}
 
@@ -770,9 +771,14 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
 				'wc-enhanced-select',
 				'selectWoo'
 			], WPCSM_VERSION, true );
+			wp_localize_script( 'wpcsm-backend', 'wpcsm_vars', [ 'nonce' => wp_create_nonce( 'wpcsm-security' ), ] );
 		}
 
 		function ajax_enable() {
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
+				die( 'Permissions check failed!' );
+			}
+
 			if ( isset( $_POST['id'], $_POST['act'] ) ) {
 				$id  = sanitize_text_field( $_POST['id'] );
 				$act = sanitize_text_field( $_POST['act'] );
@@ -785,6 +791,10 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
 		}
 
 		function ajax_search_term() {
+			if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
+				die( 'Permissions check failed!' );
+			}
+
 			$return = [];
 
 			$args = [
