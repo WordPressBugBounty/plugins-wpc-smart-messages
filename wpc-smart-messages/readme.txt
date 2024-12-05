@@ -131,7 +131,7 @@ What’s more, **WPC Smart Messages** is integrated into [WPC Smart Quick View](
 == Changelog ==
 
 = 4.2.2 =
-* Fixed: Security issues reported by Wordfence
+* Fixed: Security issues were reported by Francesco from Wordfence ([https://francescocarlucci.com/](https://francescocarlucci.com/))
 
 = 4.2.1 =
 * Updated: Compatible with WP 6.6 & Woo 9.1
