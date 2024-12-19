@@ -4,8 +4,8 @@ Donate link: https://wpclever.net
 Tags: woocommerce, wpc, message, messages, notice
 Requires at least: 4.0
 Tested up to: 6.7
-Version: 4.2.2
-Stable tag: 4.2.2
+Version: 4.2.3
+Stable tag: 4.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -129,6 +129,9 @@ What’s more, **WPC Smart Messages** is integrated into [WPC Smart Quick View](
 4. Go to WP-admin > Smart Messages to add your messages
 
 == Changelog ==
+
+= 4.2.3 =
+* Updated: Compatible with WP 6.7 & Woo 9.5
 
 = 4.2.2 =
 * Fixed: Security issues were reported by Francesco from Wordfence ([https://francescocarlucci.com/](https://francescocarlucci.com/))

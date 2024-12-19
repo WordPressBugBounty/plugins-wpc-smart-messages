@@ -1,8 +1,6 @@
 <?php
 defined( 'ABSPATH' ) || exit;
 
-use Automattic\WooCommerce\Utilities\FeaturesUtil;
-
 if ( ! class_exists( 'Wpcsm_Backend' ) ) {
 	class Wpcsm_Backend {
 		protected static $instance = null;
@@ -719,6 +717,9 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
 		}
 
 		function init() {
+			// load text-domain
+			load_plugin_textdomain( 'wpc-smart-messages', false, basename( WPCSM_DIR ) . '/languages/' );
+
 			$labels = [
 				'name'          => _x( 'Smart Messages', 'Post Type General Name', 'wpc-smart-messages' ),
 				'singular_name' => _x( 'Smart Message', 'Post Type Singular Name', 'wpc-smart-messages' ),
