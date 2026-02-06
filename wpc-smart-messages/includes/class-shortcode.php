@@ -303,7 +303,7 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 					'post_status'    => apply_filters( 'wpcsm_recent_order_statuses', array_keys( wc_get_order_statuses() ) ),
 					'posts_per_page' => - 1,
 					'date_query'     => [
-						'after' => date( 'Y-m-d H:i:s', $time ),
+						'after' => gmdate( 'Y-m-d H:i:s', $time ),
 					],
 				];
 

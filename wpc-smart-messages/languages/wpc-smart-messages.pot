@@ -2,16 +2,16 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPC Smart Messages for WooCommerce 4.2.4\n"
+"Project-Id-Version: WPC Smart Messages for WooCommerce 4.2.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpc-smart-messages\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-06-25T08:40:45+00:00\n"
+"POT-Creation-Date: 2025-12-24T04:22:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wpc-smart-messages\n"
 
 #. Plugin Name of the plugin
@@ -40,7 +40,7 @@ msgid "https://wpclever.net"
 msgstr ""
 
 #: includes/class-backend.php:36
-#: includes/class-backend.php:826
+#: includes/class-backend.php:877
 msgid "Location"
 msgstr ""
 
@@ -49,12 +49,12 @@ msgid "Conditions"
 msgstr ""
 
 #: includes/class-backend.php:46
-#: includes/class-backend.php:193
+#: includes/class-backend.php:201
 msgid "Design"
 msgstr ""
 
 #: includes/class-backend.php:51
-#: includes/class-backend.php:827
+#: includes/class-backend.php:878
 msgid "Message"
 msgstr ""
 
@@ -62,322 +62,324 @@ msgstr ""
 msgid "Undefined"
 msgstr ""
 
-#: includes/class-backend.php:92
+#: includes/class-backend.php:96
 msgid "You also can place below shortcode where you want to show this message. It still needs to meet the conditions to be displayed."
 msgstr ""
 
-#: includes/class-backend.php:101
+#: includes/class-backend.php:105
 msgid "Current time"
 msgstr ""
 
-#: includes/class-backend.php:105
+#: includes/class-backend.php:109
 msgid "Week No."
 msgstr ""
 
-#: includes/class-backend.php:106
+#: includes/class-backend.php:111
 msgid "Date/time settings"
 msgstr ""
 
-#: includes/class-backend.php:109
+#: includes/class-backend.php:114
 msgid "The logic when configuring conditions should be precise, meaningful & relevant for the message to be displayed on the chosen locations. Some conditions are satisfied in certain locations only. Irrelevant conditions will be skipped. For example, if you choose the condition “Product categories” & “Single product page” for the location, the message will be visible for all products under the chosen categories."
 msgstr ""
 
-#: includes/class-backend.php:123
-#: includes/class-backend.php:136
-#: includes/class-backend.php:340
+#: includes/class-backend.php:129
+#: includes/class-backend.php:143
+#: includes/class-backend.php:364
 msgid "Remove"
 msgstr ""
 
-#: includes/class-backend.php:141
+#: includes/class-backend.php:148
 msgid "+ Add Condition"
 msgstr ""
 
-#: includes/class-backend.php:149
+#: includes/class-backend.php:156
 msgid "You can use the shortcode within the HTML text. Build-in shortcodes:"
 msgstr ""
 
-#: includes/class-backend.php:176
+#: includes/class-backend.php:183
 msgid "Container"
 msgstr ""
 
-#: includes/class-backend.php:182
+#: includes/class-backend.php:189
 msgid "Wrap the message by a div or span tag."
 msgstr ""
 
-#: includes/class-backend.php:186
+#: includes/class-backend.php:193
 msgid "Extra CSS classes"
 msgstr ""
 
-#: includes/class-backend.php:189
+#: includes/class-backend.php:197
 msgid "Add extra CSS classes for the message container, split by one space."
 msgstr ""
 
-#: includes/class-backend.php:196
+#: includes/class-backend.php:204
 msgid "No"
 msgstr ""
 
-#: includes/class-backend.php:197
+#: includes/class-backend.php:205
 msgid "Visual"
 msgstr ""
 
-#: includes/class-backend.php:198
+#: includes/class-backend.php:206
 msgid "Custom CSS"
 msgstr ""
 
-#: includes/class-backend.php:200
+#: includes/class-backend.php:208
 msgid "Configure the appearance of the container for this message."
 msgstr ""
 
 #. translators: CSS
-#: includes/class-backend.php:207
+#: includes/class-backend.php:215
+#, php-format
 msgid "Just fill CSS code without brackets, it will be used in %s"
 msgstr ""
 
-#: includes/class-backend.php:215
+#: includes/class-backend.php:224
 msgid "Background"
 msgstr ""
 
-#: includes/class-backend.php:218
-#: includes/class-backend.php:247
+#: includes/class-backend.php:227
+#: includes/class-backend.php:259
 msgid "Color"
 msgstr ""
 
-#: includes/class-backend.php:226
+#: includes/class-backend.php:237
 msgid "Border"
 msgstr ""
 
-#: includes/class-backend.php:229
+#: includes/class-backend.php:240
 msgid "Style"
 msgstr ""
 
-#: includes/class-backend.php:232
+#: includes/class-backend.php:243
 msgid "None"
 msgstr ""
 
-#: includes/class-backend.php:233
+#: includes/class-backend.php:244
 msgid "Solid"
 msgstr ""
 
-#: includes/class-backend.php:234
+#: includes/class-backend.php:245
 msgid "Dotted"
 msgstr ""
 
-#: includes/class-backend.php:235
+#: includes/class-backend.php:246
 msgid "Dashed"
 msgstr ""
 
-#: includes/class-backend.php:236
+#: includes/class-backend.php:247
 msgid "Double"
 msgstr ""
 
-#: includes/class-backend.php:241
+#: includes/class-backend.php:252
 msgid "With (px)"
 msgstr ""
 
-#: includes/class-backend.php:253
+#: includes/class-backend.php:267
 msgid "Radius (px)"
 msgstr ""
 
-#: includes/class-backend.php:261
+#: includes/class-backend.php:276
 msgid "Padding"
 msgstr ""
 
-#: includes/class-backend.php:265
-#: includes/class-backend.php:296
+#: includes/class-backend.php:280
+#: includes/class-backend.php:315
 msgid "Top (px)"
 msgstr ""
 
-#: includes/class-backend.php:271
-#: includes/class-backend.php:302
+#: includes/class-backend.php:287
+#: includes/class-backend.php:322
 msgid "Right (px)"
 msgstr ""
 
-#: includes/class-backend.php:277
-#: includes/class-backend.php:308
+#: includes/class-backend.php:294
+#: includes/class-backend.php:329
 msgid "Bottom (px)"
 msgstr ""
 
-#: includes/class-backend.php:283
-#: includes/class-backend.php:314
+#: includes/class-backend.php:301
+#: includes/class-backend.php:336
 msgid "Left (px)"
 msgstr ""
 
-#: includes/class-backend.php:292
+#: includes/class-backend.php:311
 msgid "Margin"
 msgstr ""
 
-#: includes/class-backend.php:362
+#: includes/class-backend.php:386
 msgid "Date & Time"
 msgstr ""
 
-#: includes/class-backend.php:363
+#: includes/class-backend.php:388
 msgid "Everyday"
 msgstr ""
 
-#: includes/class-backend.php:364
+#: includes/class-backend.php:390
 msgid "On the date"
 msgstr ""
 
-#: includes/class-backend.php:365
+#: includes/class-backend.php:392
 msgid "Before date & time"
 msgstr ""
 
-#: includes/class-backend.php:366
+#: includes/class-backend.php:394
 msgid "After date & time"
 msgstr ""
 
-#: includes/class-backend.php:367
+#: includes/class-backend.php:396
 msgid "Before date"
 msgstr ""
 
-#: includes/class-backend.php:368
+#: includes/class-backend.php:398
 msgid "After date"
 msgstr ""
 
-#: includes/class-backend.php:369
+#: includes/class-backend.php:400
 msgid "Multiple dates"
 msgstr ""
 
-#: includes/class-backend.php:370
+#: includes/class-backend.php:402
 msgid "Date range"
 msgstr ""
 
-#: includes/class-backend.php:371
+#: includes/class-backend.php:404
 msgid "All even dates"
 msgstr ""
 
-#: includes/class-backend.php:372
+#: includes/class-backend.php:406
 msgid "All odd dates"
 msgstr ""
 
-#: includes/class-backend.php:373
+#: includes/class-backend.php:408
 msgid "Daily time range"
 msgstr ""
 
-#: includes/class-backend.php:374
+#: includes/class-backend.php:410
 msgid "Daily before time"
 msgstr ""
 
-#: includes/class-backend.php:375
+#: includes/class-backend.php:412
 msgid "Daily after time"
 msgstr ""
 
-#: includes/class-backend.php:376
+#: includes/class-backend.php:414
 msgid "Weekly on every"
 msgstr ""
 
-#: includes/class-backend.php:377
+#: includes/class-backend.php:416
 msgid "All even weeks"
 msgstr ""
 
-#: includes/class-backend.php:378
+#: includes/class-backend.php:418
 msgid "All odd weeks"
 msgstr ""
 
-#: includes/class-backend.php:379
+#: includes/class-backend.php:420
 msgid "On week No."
 msgstr ""
 
-#: includes/class-backend.php:380
+#: includes/class-backend.php:422
 msgid "Monthly on the"
 msgstr ""
 
-#: includes/class-backend.php:381
+#: includes/class-backend.php:424
 msgid "On month No."
 msgstr ""
 
-#: includes/class-backend.php:383
+#: includes/class-backend.php:426
 msgid "User"
 msgstr ""
 
-#: includes/class-backend.php:384
+#: includes/class-backend.php:428
 msgid "User role"
 msgstr ""
 
-#: includes/class-backend.php:386
+#: includes/class-backend.php:430
 msgid "Cart"
 msgstr ""
 
-#: includes/class-backend.php:387
+#: includes/class-backend.php:432
 msgid "Cart total"
 msgstr ""
 
-#: includes/class-backend.php:388
+#: includes/class-backend.php:434
 msgid "Cart count"
 msgstr ""
 
-#: includes/class-backend.php:390
+#: includes/class-backend.php:436
 msgid "Product"
 msgstr ""
 
-#: includes/class-backend.php:391
+#: includes/class-backend.php:438
 msgid "Product status"
 msgstr ""
 
-#: includes/class-backend.php:392
+#: includes/class-backend.php:440
 msgid "Product stock"
 msgstr ""
 
-#: includes/class-backend.php:393
+#: includes/class-backend.php:442
 msgid "Product weight"
 msgstr ""
 
-#: includes/class-backend.php:394
+#: includes/class-backend.php:444
 msgid "Product width"
 msgstr ""
 
-#: includes/class-backend.php:395
+#: includes/class-backend.php:446
 msgid "Product height"
 msgstr ""
 
-#: includes/class-backend.php:724
+#: includes/class-backend.php:775
 msgctxt "Post Type General Name"
 msgid "Smart Messages"
 msgstr ""
 
-#: includes/class-backend.php:725
+#: includes/class-backend.php:776
 msgctxt "Post Type Singular Name"
 msgid "Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:726
+#: includes/class-backend.php:777
 msgid "Add New Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:727
+#: includes/class-backend.php:778
 msgid "Add New"
 msgstr ""
 
-#: includes/class-backend.php:728
+#: includes/class-backend.php:779
 msgid "Edit Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:729
+#: includes/class-backend.php:780
 msgid "Update Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:730
+#: includes/class-backend.php:781
 msgid "Search Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:734
+#: includes/class-backend.php:785
 msgid "Smart Messages"
 msgstr ""
 
-#: includes/class-backend.php:824
+#: includes/class-backend.php:875
 msgid "Activate"
 msgstr ""
 
-#: includes/class-backend.php:825
+#: includes/class-backend.php:876
 msgid "Title"
 msgstr ""
 
-#: includes/class-backend.php:828
+#: includes/class-backend.php:879
 msgid "Date"
 msgstr ""
 
 #. translators: top of category
 #: includes/class-shortcode.php:202
+#, php-format
 msgid "#%1$d in %2$s"
 msgstr ""
 
@@ -387,6 +389,7 @@ msgstr ""
 
 #. translators: year
 #: includes/class-shortcode.php:529
+#, php-format
 msgid "%s year"
 msgid_plural "%s years"
 msgstr[0] ""
@@ -394,6 +397,7 @@ msgstr[1] ""
 
 #. translators: month
 #: includes/class-shortcode.php:533
+#, php-format
 msgid "%s month"
 msgid_plural "%s months"
 msgstr[0] ""
@@ -401,6 +405,7 @@ msgstr[1] ""
 
 #. translators: day
 #: includes/class-shortcode.php:537
+#, php-format
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] ""
@@ -408,6 +413,7 @@ msgstr[1] ""
 
 #. translators: hour
 #: includes/class-shortcode.php:541
+#, php-format
 msgid "%s hour"
 msgid_plural "%s hours"
 msgstr[0] ""
@@ -415,6 +421,7 @@ msgstr[1] ""
 
 #. translators: min
 #: includes/class-shortcode.php:545
+#, php-format
 msgid "%s min"
 msgid_plural "%s mins"
 msgstr[0] ""

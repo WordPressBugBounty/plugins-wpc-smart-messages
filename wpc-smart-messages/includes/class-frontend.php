@@ -134,9 +134,9 @@ if ( ! class_exists( 'Wpcsm_Frontend' ) ) {
 				$class = apply_filters( 'wpcsm_message_class', $message_class );
 
 				if ( $container === 'div' ) {
-					echo '<div class="' . esc_attr( $class ) . '">' . $message . '</div>';
+					echo '<div class="' . esc_attr( $class ) . '">' . wp_kses_post( $message ) . '</div>';
 				} else {
-					echo '<span class="' . esc_attr( $class ) . '">' . $message . '</span>';
+					echo '<span class="' . esc_attr( $class ) . '">' . wp_kses_post( $message ) . '</span>';
 				}
 			}
 		}

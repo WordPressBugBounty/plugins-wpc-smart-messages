@@ -14,7 +14,7 @@ echo '<input type="hidden" name="wpcsm_conditions[' . esc_attr( $index ) . '][gr
 echo '<select class="wpcsm_monthno wpcsm_multiple" name="wpcsm_conditions[' . esc_attr( $index ) . '][value][]" multiple>';
 
 for ( $i = 1; $i < 13; $i ++ ) {
-	echo '<option value="' . esc_attr( $i ) . '" ' . esc_attr( in_array( $i, $condition['value'] ) ? 'selected' : '' ) . '>' . $i . '</option>';
+	echo '<option value="' . esc_attr( $i ) . '" ' . esc_attr( in_array( $i, $condition['value'] ) ? 'selected' : '' ) . '>' . esc_html( $i ) . '</option>';
 }
 
 echo '</select>';
