@@ -3,7 +3,7 @@
 Plugin Name: WPC Smart Messages for WooCommerce
 Plugin URI: https://wpclever.net/
 Description: Display messages throughout your store through smart conditional logic settings.
-Version: 4.2.7
+Version: 4.2.8
 Author: WPClever
 Author URI: https://wpclever.net
 Text Domain: wpc-smart-messages
@@ -12,12 +12,12 @@ Requires Plugins: woocommerce
 Requires at least: 4.0
 Tested up to: 6.9
 WC requires at least: 3.0
-WC tested up to: 10.4
+WC tested up to: 10.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-! defined( 'WPCSM_VERSION' ) && define( 'WPCSM_VERSION', '4.2.7' );
+! defined( 'WPCSM_VERSION' ) && define( 'WPCSM_VERSION', '4.2.8' );
 ! defined( 'WPCSM_LITE' ) && define( 'WPCSM_LITE', __FILE__ );
 ! defined( 'WPCSM_FILE' ) && define( 'WPCSM_FILE', __FILE__ );
 ! defined( 'WPCSM_URI' ) && define( 'WPCSM_URI', plugin_dir_url( __FILE__ ) );
