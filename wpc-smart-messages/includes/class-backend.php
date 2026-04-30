@@ -445,7 +445,7 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
                     <option value="product_height"
                             data-group="compare_number" <?php selected( $condition['type'], 'product_height' ); ?>><?php esc_html_e( 'Product height', 'wpc-smart-messages' ); ?></option>
                     <?php
-                    $taxonomies = get_object_taxonomies( 'product', 'objects' ); //$taxonomies = get_taxonomies( [ 'object_type' => [ 'product' ] ], 'objects' );
+                    $taxonomies = get_object_taxonomies( 'product', 'objects' ); 
 
                     foreach ( $taxonomies as $taxonomy ) {
                         echo '<option value="' . esc_attr( $taxonomy->name ) . '" data-group="term" ' . selected( $condition['type'], $taxonomy->name, false ) . '>' . esc_html( $taxonomy->label ) . '</option>';

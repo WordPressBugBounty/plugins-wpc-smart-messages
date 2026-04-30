@@ -456,7 +456,7 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'animation' => 'dissolve' //dissolve (default), fade, flip, flipUp, flipCube, flipCubeUp and spin
 			], $attrs );
 
-			$output .= '<span class="wpcsm-text-rotator" data-animation="' . esc_attr( $attrs['animation'] ) . '" data-speed="' . esc_attr( $attrs['speed'] ) . '">' . esc_html( $attrs['text'] ) . '</span>';
+			$output .= '<span class="wpcsm-text-rotator" data-animation="' . esc_attr( $attrs['animation'] ) . '" data-speed="' . esc_attr( $attrs['speed'] ) . '">' . esc_html( wp_strip_all_tags( $attrs['text'] ) ) . '</span>';
 
 			return apply_filters( 'wpcsm_shortcode_live_number', $output, $attrs );
 		}
