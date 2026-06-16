@@ -3,21 +3,21 @@
 Plugin Name: WPC Smart Messages for WooCommerce
 Plugin URI: https://wpclever.net/
 Description: Display messages throughout your store through smart conditional logic settings.
-Version: 4.3.0
+Version: 4.3.1
 Author: WPClever
 Author URI: https://wpclever.net
 Text Domain: wpc-smart-messages
 Domain Path: /languages/
 Requires Plugins: woocommerce
 Requires at least: 4.0
-Tested up to: 6.9
+Tested up to: 7.0
 WC requires at least: 3.0
-WC tested up to: 10.7
+WC tested up to: 10.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-! defined( 'WPCSM_VERSION' ) && define( 'WPCSM_VERSION', '4.3.0' );
+! defined( 'WPCSM_VERSION' ) && define( 'WPCSM_VERSION', '4.3.1' );
 ! defined( 'WPCSM_LITE' ) && define( 'WPCSM_LITE', __FILE__ );
 ! defined( 'WPCSM_FILE' ) && define( 'WPCSM_FILE', __FILE__ );
 ! defined( 'WPCSM_URI' ) && define( 'WPCSM_URI', plugin_dir_url( __FILE__ ) );
@@ -25,14 +25,18 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 ! defined( 'WPCSM_REVIEWS' ) && define( 'WPCSM_REVIEWS', 'https://wordpress.org/support/plugin/wpc-smart-messages/reviews/' );
 ! defined( 'WPCSM_CHANGELOG' ) && define( 'WPCSM_CHANGELOG', 'https://wordpress.org/plugins/wpc-smart-messages/#developers' );
 ! defined( 'WPCSM_DISCUSSION' ) && define( 'WPCSM_DISCUSSION', 'https://wordpress.org/support/plugin/wpc-smart-messages' );
-! defined( 'WPC_URI' ) && define( 'WPC_URI', WPCSM_URI );
 
-include 'includes/dashboard/wpc-dashboard.php';
-include 'includes/kit/wpc-kit.php';
-include 'includes/hpos.php';
+// WPC Core
+require_once __DIR__ . '/includes/wpc-core/wpc-core.php';
+wpc_core_register( [
+	'file'    => __FILE__,
+	'version' => WPCSM_VERSION,
+	'prefix'  => 'wpcsm',
+] );
 
 // plugin activate
 include 'includes/class-activate.php';
+
 register_activation_hook( WPCSM_FILE, [ 'Wpcsm_Activate', 'generate_examples' ] );
 
 if ( ! function_exists( 'wpcsm_init' ) ) {
