@@ -347,11 +347,11 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
         }
 
         function ajax_add_condition() {
-            if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
+            if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
                 die( 'Permissions check failed!' );
             }
 
-            $index = sanitize_text_field( $_POST['index'] );
+            $index = sanitize_text_field( wp_unslash( $_POST['index'] ?? '' ) );
             ?>
             <div class="input-panel" data-key="<?php echo esc_attr( $index ) ?>">
                 <div class="input-type">
@@ -368,13 +368,13 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
         }
 
         function ajax_get_condition_value() {
-            if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
+            if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
                 die( 'Permissions check failed!' );
             }
 
-            $group = sanitize_text_field( $_POST['group'] );
-            $type  = sanitize_text_field( $_POST['type'] );
-            $index = sanitize_text_field( $_POST['index'] );
+            $group = sanitize_text_field( wp_unslash( $_POST['group'] ?? '' ) );
+            $type  = sanitize_text_field( wp_unslash( $_POST['type'] ?? '' ) );
+            $index = sanitize_text_field( wp_unslash( $_POST['index'] ?? '' ) );
             self::get_condition_value( $index, [ 'group' => $group, 'type' => $type ] );
             wp_die();
         }
@@ -735,35 +735,35 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
 
         function save_post( $post_id ) {
             if ( isset( $_POST['wpcsm_location'] ) ) {
-                update_post_meta( $post_id, 'wpcsm_location', sanitize_text_field( $_POST['wpcsm_location'] ) );
+                update_post_meta( $post_id, 'wpcsm_location', sanitize_text_field( wp_unslash( $_POST['wpcsm_location'] ?? '' ) ) );
             }
 
             if ( isset( $_POST['wpcsm_custom_location'] ) ) {
-                update_post_meta( $post_id, 'wpcsm_custom_location', sanitize_text_field( $_POST['wpcsm_custom_location'] ) );
+                update_post_meta( $post_id, 'wpcsm_custom_location', sanitize_text_field( wp_unslash( $_POST['wpcsm_custom_location'] ?? '' ) ) );
             }
 
             if ( isset( $_POST['wpcsm_conditions'] ) ) {
-                update_post_meta( $post_id, 'wpcsm_conditions', self::sanitize_array( $_POST['wpcsm_conditions'] ) );
+                update_post_meta( $post_id, 'wpcsm_conditions', self::sanitize_array( wp_unslash( $_POST['wpcsm_conditions'] ?? '' ) ) );
             }
 
             if ( isset( $_POST['wpcsm_container'] ) ) {
-                update_post_meta( $post_id, 'wpcsm_container', sanitize_text_field( $_POST['wpcsm_container'] ) );
+                update_post_meta( $post_id, 'wpcsm_container', sanitize_text_field( wp_unslash( $_POST['wpcsm_container'] ?? '' ) ) );
             }
 
             if ( isset( $_POST['wpcsm_extra_classes'] ) ) {
-                update_post_meta( $post_id, 'wpcsm_extra_classes', sanitize_text_field( $_POST['wpcsm_extra_classes'] ) );
+                update_post_meta( $post_id, 'wpcsm_extra_classes', sanitize_text_field( wp_unslash( $_POST['wpcsm_extra_classes'] ?? '' ) ) );
             }
 
             if ( isset( $_POST['wpcsm_design'] ) ) {
-                update_post_meta( $post_id, 'wpcsm_design', sanitize_text_field( $_POST['wpcsm_design'] ) );
+                update_post_meta( $post_id, 'wpcsm_design', sanitize_text_field( wp_unslash( $_POST['wpcsm_design'] ?? '' ) ) );
             }
 
             if ( isset( $_POST['wpcsm_css'] ) ) {
-                update_post_meta( $post_id, 'wpcsm_css', self::sanitize_array( $_POST['wpcsm_css'] ) );
+                update_post_meta( $post_id, 'wpcsm_css', self::sanitize_array( wp_unslash( $_POST['wpcsm_css'] ?? '' ) ) );
             }
 
             if ( isset( $_POST['wpcsm_custom_css'] ) ) {
-                update_post_meta( $post_id, 'wpcsm_custom_css', sanitize_textarea_field( $_POST['wpcsm_custom_css'] ) );
+                update_post_meta( $post_id, 'wpcsm_custom_css', sanitize_textarea_field( wp_unslash( $_POST['wpcsm_custom_css'] ?? '' ) ) );
             }
         }
 
@@ -802,14 +802,14 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
         }
 
         function enqueue_scripts() {
-            wp_enqueue_style( 'hint', WPCSM_URI . 'assets/css/hint.css' );
+            wp_enqueue_style( 'hint', WPCSM_URI . 'assets/css/hint.css', [], WPCSM_VERSION );
 
             // color picker
             wp_enqueue_style( 'wp-color-picker' );
             wp_register_script( 'wp-color-picker-alpha', WPCSM_URI . 'assets/js/wp-color-picker-alpha.min.js', [ 'wp-color-picker' ], WPCSM_VERSION );
 
             // wpcdpk
-            wp_enqueue_style( 'wpcdpk', WPCSM_URI . 'assets/libs/wpcdpk/css/datepicker.css' );
+            wp_enqueue_style( 'wpcdpk', WPCSM_URI . 'assets/libs/wpcdpk/css/datepicker.css', [], WPCSM_VERSION );
             wp_enqueue_script( 'wpcdpk', WPCSM_URI . 'assets/libs/wpcdpk/js/datepicker.js', [ 'jquery' ], WPCSM_VERSION, true );
 
             wp_enqueue_style( 'wpcsm-backend', WPCSM_URI . 'assets/css/backend.css', [ 'woocommerce_admin_styles' ], WPCSM_VERSION );
@@ -824,13 +824,13 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
         }
 
         function ajax_enable() {
-            if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
+            if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['nonce'] ) ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
                 die( 'Permissions check failed!' );
             }
 
             if ( isset( $_POST['id'], $_POST['act'] ) ) {
-                $id  = sanitize_text_field( $_POST['id'] );
-                $act = sanitize_text_field( $_POST['act'] );
+                $id  = sanitize_text_field( wp_unslash( $_POST['id'] ?? '' ) );
+                $act = sanitize_text_field( wp_unslash( $_POST['act'] ?? '' ) );
 
                 update_post_meta( $id, 'wpcsm_activate', ( $act === 'activate' ? 'on' : 'off' ) );
                 echo esc_html( $act );
@@ -840,19 +840,19 @@ if ( ! class_exists( 'Wpcsm_Backend' ) ) {
         }
 
         function ajax_search_term() {
-            if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
+            if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'wpcsm-security' ) || ! current_user_can( 'manage_options' ) ) {
                 die( 'Permissions check failed!' );
             }
 
             $return = [];
 
             $args = [
-                    'taxonomy'   => sanitize_text_field( $_REQUEST['taxonomy'] ),
+                    'taxonomy'   => sanitize_text_field( wp_unslash( $_REQUEST['taxonomy'] ?? '' ) ),
                     'orderby'    => 'id',
                     'order'      => 'ASC',
                     'hide_empty' => false,
                     'fields'     => 'all',
-                    'name__like' => sanitize_text_field( $_REQUEST['q'] ),
+                    'name__like' => sanitize_text_field( wp_unslash( $_REQUEST['q'] ?? '' ) ),
             ];
 
             $terms = get_terms( $args );

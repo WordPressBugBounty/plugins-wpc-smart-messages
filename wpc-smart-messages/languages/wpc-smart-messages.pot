@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: WPC Smart Messages for WooCommerce 4.3.1\n"
+"Project-Id-Version: WPC Smart Messages for WooCommerce 4.3.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpc-smart-messages\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-16T09:18:49+00:00\n"
+"POT-Creation-Date: 2026-07-16T03:24:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: wpc-smart-messages\n"
@@ -40,7 +40,7 @@ msgid "https://wpclever.net"
 msgstr ""
 
 #: includes/class-backend.php:36
-#: includes/class-backend.php:875
+#: includes/class-backend.php:874
 msgid "Location"
 msgstr ""
 
@@ -54,7 +54,7 @@ msgid "Design"
 msgstr ""
 
 #: includes/class-backend.php:51
-#: includes/class-backend.php:876
+#: includes/class-backend.php:875
 msgid "Message"
 msgstr ""
 
@@ -331,49 +331,49 @@ msgstr ""
 msgid "Product height"
 msgstr ""
 
-#: includes/class-backend.php:773
+#: includes/class-backend.php:772
 msgctxt "Post Type General Name"
 msgid "Smart Messages"
 msgstr ""
 
-#: includes/class-backend.php:774
+#: includes/class-backend.php:773
 msgctxt "Post Type Singular Name"
 msgid "Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:775
+#: includes/class-backend.php:774
 msgid "Add New Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:776
+#: includes/class-backend.php:775
 msgid "Add New"
 msgstr ""
 
-#: includes/class-backend.php:777
+#: includes/class-backend.php:776
 msgid "Edit Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:778
+#: includes/class-backend.php:777
 msgid "Update Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:779
+#: includes/class-backend.php:778
 msgid "Search Smart Message"
 msgstr ""
 
-#: includes/class-backend.php:783
+#: includes/class-backend.php:782
 msgid "Smart Messages"
 msgstr ""
 
-#: includes/class-backend.php:873
+#: includes/class-backend.php:872
 msgid "Activate"
 msgstr ""
 
-#: includes/class-backend.php:874
+#: includes/class-backend.php:873
 msgid "Title"
 msgstr ""
 
-#: includes/class-backend.php:877
+#: includes/class-backend.php:876
 msgid "Date"
 msgstr ""
 

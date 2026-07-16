@@ -578,11 +578,11 @@ if ( ! class_exists( 'Wpcsm_Frontend' ) ) {
 
 		function scripts() {
 			// simple-text-rotator
-			wp_enqueue_style( 'simple-text-rotator', WPCSM_URI . 'assets/libs/simple-text-rotator/simpletextrotator.css' );
+			wp_enqueue_style( 'simple-text-rotator', WPCSM_URI . 'assets/libs/simple-text-rotator/simpletextrotator.css', [], WPCSM_VERSION );
 			wp_enqueue_script( 'simple-text-rotator', WPCSM_URI . 'assets/libs/simple-text-rotator/jquery.simple-text-rotator.js', [ 'jquery' ], WPCSM_VERSION, true );
 
 			// wpcsm
-			wp_enqueue_style( 'wpcsm-frontend', WPCSM_URI . 'assets/css/frontend.css' );
+			wp_enqueue_style( 'wpcsm-frontend', WPCSM_URI . 'assets/css/frontend.css', [], WPCSM_VERSION );
 			wp_enqueue_script( 'wpcsm-frontend', WPCSM_URI . 'assets/js/frontend.js', [ 'jquery' ], WPCSM_VERSION, true );
 			wp_add_inline_style( 'wpcsm-frontend', self::inline_css() );
 		}
