@@ -20,13 +20,17 @@ if ( ! class_exists( 'Wpcsm_Frontend' ) ) {
 
 			add_action( 'init', [ $this, 'init' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ], 99 );
-
-			self::process_messages();
 		}
 
 		function init() {
 			add_shortcode( 'wpcsm', [ $this, 'shortcode' ] );
 			add_shortcode( 'wpc_smart_message', [ $this, 'shortcode' ] );
+
+			// Process messages on init so that other plugins (e.g. woosc, woosq, woosw)
+			// have had a chance to load their text domains before the wpcsm_locations
+			// filter is applied. Calling this earlier (in the constructor) triggers
+			// _load_textdomain_just_in_time notices in WordPress 6.7+.
+			self::process_messages();
 		}
 
 		function shortcode( $attrs ) {

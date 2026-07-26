@@ -3,8 +3,8 @@ Contributors: wpclever
 Donate link: https://wpclever.net
 Tags: woocommerce, wpc, message, messages, notice
 Tested up to: 7.0
-Version: 4.3.2
-Stable tag: 4.3.2
+Version: 4.3.3
+Stable tag: 4.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,16 @@ What’s more, **WPC Smart Messages** is integrated into [WPC Smart Quick View](
 
 **WPC Smart Messages** have specific positions for displaying messages on variable products’ product pages using [WPC Variations Radio Buttons](https://wpclever.net/downloads/variations-radio-buttons/) interface. Plus, on [Smart Bundle](https://wpclever.net/downloads/product-bundles/)’s pages, users can also choose some particular places for showing Smart Messages properly and grab the attention better.
 
+= Need more features? =
+
+Please try other plugins from us:
+
+- [WPC Smart Compare](https://wordpress.org/plugins/woo-smart-compare/ "WPC Smart Compare")
+- [WPC Smart Quick View](https://wordpress.org/plugins/woo-smart-quick-view/ "WPC Smart Quick View")
+- [WPC Smart Wishlist](https://wordpress.org/plugins/woo-smart-wishlist/ "WPC Smart Wishlist")
+- [WPC Smart Notification](https://wordpress.org/plugins/wpc-smart-notification/ "WPC Smart Notification")
+- [WPC AJAX Add to Cart](https://wordpress.org/plugins/wpc-ajax-add-to-cart/ "WPC AJAX Add to Cart")
+
 == Installation ==
 
 1. Please make sure that you installed WooCommerce
@@ -128,6 +138,10 @@ What’s more, **WPC Smart Messages** is integrated into [WPC Smart Quick View](
 4. Go to WP-admin > Smart Messages to add your messages
 
 == Changelog ==
+
+= 4.3.3 =
+* Updated: Optimized the code
+* Updated: Compatible with WP 7.0 & Woo 10.9
 
 = 4.3.2 =
 * Updated: Minor CSS/JS issues in the backend
