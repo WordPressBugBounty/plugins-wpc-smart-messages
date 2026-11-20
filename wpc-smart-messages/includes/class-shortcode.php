@@ -38,7 +38,7 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 			add_shortcode( 'wpcsm_text_rotator', [ $this, 'text_rotator' ] );
 
 			self::$shortcodes = apply_filters( 'wpcsm_shortcodes', [
-				'wpcsm_product_data'          => 'Display the product data. For example, [wpcsm_product_data get="stock"]. Available data: sku, price, stock, category, tag, average_rating, rating_counts, review_count, weight, width, height, etc.',
+				'wpcsm_product_data'          => 'Display the product data. For example, [wpcsm_product_data get="stock"]. Available data: sku, price, stock, category, tag, average_rating, rating_count, review_count, weight, width, height, etc.',
 				'wpcsm_product_terms'         => 'Display the product terms. For example, [wpcsm_product_terms taxonomy="product_cat"]. Available taxonomy: product_cat, product_tag, wpc-brand, wpc-collection, etc.',
 				'wpcsm_product_random_number' => 'Display a random number that associated to a product, it only change after selected period time in seconds. For example, [wpcsm_product_random_number min="10" max="15" refresh="600"]',
 				'wpcsm_best_seller'           => 'Display the best-seller position in a category, tag, brand, or collection. For example, [wpcsm_best_seller top="10" in="product_cat" text="#%s in %s"]. Allow "in" param: product_cat, product_tag, wpc-brand, wpc-collection.',
@@ -61,6 +61,73 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 			return self::$shortcodes;
 		}
 
+		protected function is_post_readable( $post, $allow_privileged = false ) {
+			if ( ! $post || ! ( $post instanceof WP_Post ) ) {
+				return false;
+			}
+
+			if ( post_password_required( $post ) ) {
+				return false;
+			}
+
+			if ( 'publish' === $post->post_status ) {
+				return true;
+			}
+
+			if ( $allow_privileged && current_user_can( 'read_post', $post->ID ) ) {
+				return true;
+			}
+
+			return false;
+		}
+
+		protected function is_product_accessible( $product, $allow_privileged = false ) {
+			if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+				return false;
+			}
+
+			$product_id = $product->get_id();
+			$post       = get_post( $product_id );
+
+			if ( ! $post || ! in_array( $post->post_type, [ 'product', 'product_variation' ], true ) ) {
+				return false;
+			}
+
+			// For variations, ensure the parent product is also accessible.
+			if ( 'product_variation' === $post->post_type ) {
+				$parent_id   = $product->get_parent_id();
+				$parent_post = $parent_id ? get_post( $parent_id ) : null;
+
+				if ( ! $parent_post || 'product' !== $parent_post->post_type || ! $this->is_post_readable( $parent_post, $allow_privileged ) ) {
+					return false;
+				}
+			}
+
+			return $this->is_post_readable( $post, $allow_privileged );
+		}
+
+		protected function get_accessible_product( $product_id = null ) {
+			$explicit_id = ! empty( $product_id );
+
+			if ( ! $explicit_id ) {
+				global $product;
+			} else {
+				$product_id = absint( $product_id );
+
+				if ( ! $product_id || ! in_array( get_post_type( $product_id ), [ 'product', 'product_variation' ], true ) ) {
+					return null;
+				}
+
+				$product = wc_get_product( $product_id );
+			}
+
+			if ( ! $this->is_product_accessible( $product, ! $explicit_id ) ) {
+				return null;
+			}
+
+			return $product;
+		}
+
 		function product_data( $attrs ) {
 			$output = '';
 
@@ -70,13 +137,9 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'id'   => null
 			], $attrs );
 
-			if ( ! $attrs['id'] ) {
-				global $product;
-			} else {
-				$product = wc_get_product( $attrs['id'] );
-			}
+			$product = $this->get_accessible_product( $attrs['id'] );
 
-			if ( $product && is_a( $product, 'WC_Product' ) ) {
+			if ( $product ) {
 				switch ( $attrs['get'] ) {
 					case 'price':
 						switch ( $attrs['type'] ) {
@@ -110,10 +173,44 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 
 						break;
 					default:
-						$func = 'get_' . $attrs['get'];
+						$get             = sanitize_key( $attrs['get'] );
+						$allowed_getters = apply_filters( 'wpcsm_shortcode_product_data_allowed_getters', [
+							'id',
+							'type',
+							'name',
+							'title',
+							'slug',
+							'sku',
+							'description',
+							'short_description',
+							'regular_price',
+							'sale_price',
+							'price_html',
+							'stock_quantity',
+							'stock_status',
+							'weight',
+							'length',
+							'width',
+							'height',
+							'shipping_class',
+							'average_rating',
+							'rating_count',
+							'review_count',
+							'min_purchase_quantity',
+							'max_purchase_quantity',
+							'permalink',
+						] );
 
-						if ( method_exists( $product, $func ) ) {
-							$output = $product->$func();
+						if ( in_array( $get, (array) $allowed_getters, true ) ) {
+							$func = 'get_' . $get;
+
+							if ( is_callable( [ $product, $func ] ) ) {
+								$value = $product->$func();
+
+								if ( is_scalar( $value ) ) {
+									$output = wp_kses_post( (string) $value );
+								}
+							}
 						}
 				}
 			}
@@ -129,15 +226,23 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'id'  => null
 			], $attrs );
 
-			if ( ! $attrs['id'] ) {
-				global $product;
-				$product_id = $product->get_id();
-			} else {
-				$product_id = absint( $attrs['id'] );
-			}
+			$product = $this->get_accessible_product( $attrs['id'] );
+			$key     = sanitize_text_field( (string) $attrs['key'] );
 
-			if ( $product_id && ! empty( $attrs['key'] ) ) {
-				$output = get_post_meta( $product_id, $attrs['key'], true );
+			if ( $product && '' !== $key && 0 !== strpos( $key, '_' ) && ! is_protected_meta( $key, 'post' ) ) {
+				$allowed_keys    = apply_filters( 'wpcsm_shortcode_product_field_allowed_keys', [] );
+				$disallowed_keys = apply_filters( 'wpcsm_shortcode_product_field_disallowed_keys', [] );
+
+				$is_allowed = ( empty( $allowed_keys ) || in_array( $key, (array) $allowed_keys, true ) )
+				              && ! in_array( $key, (array) $disallowed_keys, true );
+
+				if ( $is_allowed ) {
+					$value = get_post_meta( $product->get_id(), $key, true );
+
+					if ( is_scalar( $value ) ) {
+						$output = wp_kses_post( (string) $value );
+					}
+				}
 			}
 
 			return apply_filters( 'wpcsm_shortcode_product_field', $output, $attrs );
@@ -154,14 +259,21 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'after'    => '',
 			], $attrs );
 
-			if ( ! $attrs['id'] ) {
-				global $product;
-			} else {
-				$product = wc_get_product( $attrs['id'] );
-			}
+			$product  = $this->get_accessible_product( $attrs['id'] );
+			$taxonomy = sanitize_key( $attrs['taxonomy'] );
 
-			if ( $product && is_a( $product, 'WC_Product' ) ) {
-				$output = get_the_term_list( $product->get_id(), $attrs['taxonomy'], $attrs['before'], $attrs['sep'], $attrs['after'] );
+			if ( $product && $taxonomy && taxonomy_exists( $taxonomy ) && is_object_in_taxonomy( get_post_type( $product->get_id() ), $taxonomy ) && ( is_taxonomy_viewable( $taxonomy ) || taxonomy_is_product_attribute( $taxonomy ) ) ) {
+				$terms_list = get_the_term_list(
+					$product->get_id(),
+					$taxonomy,
+					wp_kses_post( $attrs['before'] ),
+					wp_kses_post( $attrs['sep'] ),
+					wp_kses_post( $attrs['after'] )
+				);
+
+				if ( is_string( $terms_list ) ) {
+					$output = $terms_list;
+				}
 			}
 
 			return apply_filters( 'wpcsm_shortcode_product_terms', $output, $attrs );
@@ -174,10 +286,10 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'refresh' => 600
 			], $attrs );
 
-			global $product;
+			$product = $this->get_accessible_product();
 			$refresh = absint( $attrs['refresh'] );
 
-			if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+			if ( ! $product ) {
 				return '';
 			}
 
@@ -202,19 +314,14 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'text' => /* translators: top of category */ esc_html__( '#%1$d in %2$s', 'wpc-smart-messages' )
 			], $attrs );
 
-			if ( ! $attrs['id'] ) {
-				global $product;
-			} else {
-				$product = wc_get_product( $attrs['id'] );
-			}
+			$product = $this->get_accessible_product( $attrs['id'] );
 
-			if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+			if ( ! $product ) {
 				return '';
 			}
 
 			$product_id = $product->get_id();
-			$terms      = get_the_terms( $product_id, $attrs['in'] );
-			$text       = apply_filters( 'wpcsm_shortcode_best_seller_text', $attrs['text'] );
+			$text       = apply_filters( 'wpcsm_shortcode_best_seller_text', esc_html( $attrs['text'] ) );
 			$taxonomies = apply_filters( 'wpcsm_shortcode_best_seller_taxonomies', [
 				'product_cat',
 				'product_tag',
@@ -222,9 +329,11 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'wpc-collection'
 			] );
 
-			if ( ! in_array( $attrs['in'], $taxonomies ) ) {
+			if ( ! in_array( $attrs['in'], $taxonomies, true ) ) {
 				$attrs['in'] = 'product_cat';
 			}
+
+			$terms = get_the_terms( $product_id, $attrs['in'] );
 
 			if ( is_array( $terms ) && ! empty( $terms ) ) {
 				foreach ( $terms as $term ) {
@@ -253,7 +362,12 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 							$query->the_post();
 
 							if ( get_the_ID() === $product_id ) {
-								$output = sprintf( $text, $top, '<a href="' . get_term_link( $term->term_id, $attrs['in'] ) . '">' . $term->name . '</a>' );
+								$term_link = get_term_link( $term->term_id, $attrs['in'] );
+
+								if ( ! is_wp_error( $term_link ) ) {
+									$output = sprintf( $text, $top, '<a href="' . esc_url( $term_link ) . '">' . esc_html( $term->name ) . '</a>' );
+								}
+
 								break;
 							}
 
@@ -279,13 +393,9 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'text'   => esc_html__( '{name} from {from} bought this item!', 'wpc-smart-messages' )
 			], $attrs );
 
-			if ( ! $attrs['id'] ) {
-				global $product;
-			} else {
-				$product = wc_get_product( $attrs['id'] );
-			}
+			$product = $this->get_accessible_product( $attrs['id'] );
 
-			if ( ! $product || ! is_a( $product, 'WC_Product' ) ) {
+			if ( ! $product ) {
 				return '';
 			}
 
@@ -361,9 +471,9 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 			$order_detail = get_transient( $transient );
 
 			if ( ! empty( $order_detail ) ) {
-				$output = $attrs['text'];
-				$output = str_replace( '{name}', $order_detail['name'], $output );
-				$output = str_replace( '{from}', $order_detail['from'], $output );
+				$output = esc_html( $attrs['text'] );
+				$output = str_replace( '{name}', esc_html( $order_detail['name'] ), $output );
+				$output = str_replace( '{from}', esc_html( $order_detail['from'] ), $output );
 			}
 
 			return apply_filters( 'wpcsm_shortcode_recent_order', $output, $attrs );
@@ -377,13 +487,9 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'id'   => null
 			], $attrs );
 
-			if ( ! $attrs['id'] ) {
-				global $product;
-			} else {
-				$product = wc_get_product( $attrs['id'] );
-			}
+			$product = $this->get_accessible_product( $attrs['id'] );
 
-			if ( $product && is_a( $product, 'WC_Product' ) ) {
+			if ( $product ) {
 				switch ( $attrs['type'] ) {
 					case 'html':
 						$output = $product->get_price_html();
@@ -410,16 +516,10 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'id' => null
 			], $attrs );
 
-			if ( ! $attrs['id'] ) {
-				global $product;
+			$product = $this->get_accessible_product( $attrs['id'] );
 
-				if ( $product && $product->is_on_sale() ) {
-					$output = self::get_saved_amount( $product );
-				}
-			} else {
-				if ( ( $_product = wc_get_product( $attrs['id'] ) ) && $_product->is_on_sale() ) {
-					$output = self::get_saved_amount( $_product );
-				}
+			if ( $product && $product->is_on_sale() ) {
+				$output = self::get_saved_amount( $product );
 			}
 
 			return apply_filters( 'wpcsm_shortcode_saved_amount', $output, $attrs );
@@ -432,16 +532,10 @@ if ( ! class_exists( 'Wpcsm_Shortcode' ) ) {
 				'id' => null
 			], $attrs );
 
-			if ( ! $attrs['id'] ) {
-				global $product;
+			$product = $this->get_accessible_product( $attrs['id'] );
 
-				if ( $product && $product->is_on_sale() ) {
-					$output = self::get_saved_percentage( $product );
-				}
-			} else {
-				if ( ( $_product = wc_get_product( $attrs['id'] ) ) && $_product->is_on_sale() ) {
-					$output = self::get_saved_percentage( $_product );
-				}
+			if ( $product && $product->is_on_sale() ) {
+				$output = self::get_saved_percentage( $product );
 			}
 
 			return apply_filters( 'wpcsm_shortcode_saved_percentage', $output, $attrs );

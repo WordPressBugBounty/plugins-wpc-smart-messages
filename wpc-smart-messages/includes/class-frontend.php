@@ -106,6 +106,13 @@ if ( ! class_exists( 'Wpcsm_Frontend' ) ) {
 		}
 
 		function display_message( $message_id, $location ) {
+			$message_id = absint( $message_id );
+			$post       = $message_id ? get_post( $message_id ) : null;
+
+			if ( ! $post || 'wpc_smart_message' !== $post->post_type || 'publish' !== $post->post_status || post_password_required( $post ) ) {
+				return;
+			}
+
 			$message       = apply_filters( 'wpcsm_message_original', get_post_field( 'post_content', $message_id ), $message_id, $location );
 			$container     = get_post_meta( $message_id, 'wpcsm_container', true ) ?: 'div';
 			$extra_classes = get_post_meta( $message_id, 'wpcsm_extra_classes', true ) ?: '';
@@ -146,6 +153,10 @@ if ( ! class_exists( 'Wpcsm_Frontend' ) ) {
 		}
 
 		function match_conditions( $conditions ) {
+			if ( ! is_array( $conditions ) || empty( $conditions ) ) {
+				return true;
+			}
+
 			$match_all = true;
 
 			foreach ( $conditions as $condition ) {
